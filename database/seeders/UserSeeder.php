@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
           // \App\Models\User::factory(10)->create();
 
         \App\Models\User::query()->create([
+            'id' => 1,
             'name' => 'Admin',
             'email' => 'admin@dev.com',
             'password' => bcrypt('123'),
@@ -20,6 +21,7 @@ class UserSeeder extends Seeder
         ]);
 
         \App\Models\User::query()->create([
+            'id' => 2,
             'name'=> 'User',
             'email'=> 'user@dev.com',
             'password'=> bcrypt('123'),

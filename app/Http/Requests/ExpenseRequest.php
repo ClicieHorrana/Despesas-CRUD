@@ -2,14 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Policies\ExpensePolicy;
+use App\Models\Expense;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class ExpenseRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return app(ExpensePolicy::class)->store($this->user()) || app(ExpensePolicy::class)->update($this->user());
+        return Gate::allows('store', Expense::class) || 
+        (Gate::allows('update', $this->route('expense')) && $this->route('expenses'));
     }
 
     public function rules(): array

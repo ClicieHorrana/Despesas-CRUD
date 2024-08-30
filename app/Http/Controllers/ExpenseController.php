@@ -9,6 +9,7 @@ use App\Policies\ExpensePolicy;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Gate;
 
 class ExpenseController extends Controller
 {
@@ -71,10 +72,14 @@ class ExpenseController extends Controller
      * )
      */
 
-    public function store(ExpenseRequest $request): JsonResource
+    public function store(ExpenseRequest $request):  JsonResource|JsonResponse
     {
-        $expense = $this->repository->create($request->all());
-        return new ExpenseResources($expense);
+        if (!Gate::allows('store', Expense::class)) {
+            return response()->json(['message' => 'Você não tem permissão para criar uma despesa.'], 403);
+        }
+
+        $expense = Expense::create($request->validated());
+        return response()->json($expense, 201);
     }
 
        /**
@@ -150,8 +155,11 @@ class ExpenseController extends Controller
      * )
      */
 
-    public function update(ExpenseRequest $request, Expense $expense): JsonResource
+    public function update(ExpenseRequest $request, Expense $expense): JsonResource|JsonResponse
     {
+        if (!Gate::allows('update', Expense::class)) {
+            return response()->json(['message' => 'Você não tem permissão para criar uma despesa.'], 403);
+        }
         $expense->update($request->validated());
         return new ExpenseResources($expense);
     }
