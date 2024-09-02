@@ -25,21 +25,21 @@ Este projeto é uma aplicação Laravel para gerenciamento de despesas com auten
    Clone o repositório do projeto e entre no diretório do projeto.
    `git clone https://github.com/ClicieHorrana/Despesas-CRUD.git`
 
-3. **Instalar as Dependências:**
+2. **Instalar as Dependências:**
 
    Instale as dependências do projeto usando o Composer.
    `Composer install`
 
-5. **Configurar o Ambiente:**
+3. **Configurar o Ambiente:**
 
    Renomeie o arquivo `.env.example` para `.env` e ajuste as variáveis de ambiente conforme necessário, incluindo configurações para o banco de dados e Mailtrap.
 
-6. **Gerar a Chave de Aplicação:**
+4. **Gerar a Chave de Aplicação:**
 
    Gere uma chave de aplicação Laravel para configurar a criptografia.
    `php artisan key:generate`
 
-8. **Limpar os Caches do Laravel:**
+5. **Limpar os Caches do Laravel:**
 
    Limpe os caches do framework para garantir que todas as configurações sejam aplicadas corretamente.
    `php artisan config:cache
@@ -47,17 +47,17 @@ Este projeto é uma aplicação Laravel para gerenciamento de despesas com auten
     php artisan view:cache
     `
 
-10. **Rodar as Migrações:**
+6. **Rodar as Migrações:**
 
    Execute as migrações para criar as tabelas no banco de dados.
     `php artisan migrate`
     
-11. **Popular o Banco de Dados com Dados Iniciais:**
+7. **Popular o Banco de Dados com Dados Iniciais:**
 
    Execute os seeders para adicionar dados iniciais ao banco de dados, como usuários.
     `php artisan db:seed`
     
-11. **Testar as Rotas da API:**
+8. **Testar as Rotas da API:**
     
    Utilize o Insomnia para testar as rotas da API. As rotas principais incluem:
 
